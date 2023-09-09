@@ -1,25 +1,22 @@
 package org.cydeo.service;
 
-import lombok.AllArgsConstructor;
 import org.cydeo.repository.EmployeeRepository;
 import org.cydeo.repository.HoursRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SalaryService {
+public class OvertimeSalaryService {
 
     EmployeeRepository employeeRepository;
     HoursRepository hoursRepository;
 
-    @Autowired
-    public SalaryService(EmployeeRepository employeeRepository,@Qualifier("Regular") HoursRepository hoursRepository) {
+    public OvertimeSalaryService(EmployeeRepository employeeRepository, @Qualifier("Overtime") HoursRepository hoursRepository) {
         this.employeeRepository = employeeRepository;
         this.hoursRepository = hoursRepository;
     }
 
-    public void calculateRegularSalary(){
+    public void calculateOvertimeSalary(){
         System.out.println("Salary: " + employeeRepository.getHourlyRate() * hoursRepository.getHours());
     }
 }
