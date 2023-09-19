@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{index.page.title}">Title</title>
+
+    <link th:replace="/fragments/index :: boostrap-css"/>
+    <link th:replace="/fragments/index :: custom-css"/>
+    <script th:replace="/fragments/index::js-scripts"></script>
 </head>
 <body>
     <h2>Welcome new student</h2>
@@ -34,6 +38,49 @@
     <ul>
         <li th:each="student : ${students}" th:text="${student.firstName}"></li>
     </ul>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">State</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.firstName}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.age}"></td>
+            <td th:text="${student.state}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--Conditional logic-->
+    <div th:text="${students.get(0).age > 25 ? 'ELIGIBLE' : 'NOT ELIGIBLE'}"></div>
+
+    <div>
+        <span th:if="${students.get(0).age == 'Arizona'}">Arizona</span>
+        <span th:unless="${students.get(0).getState() == 'Arizona'}">Not Arizona</span>
+    </div>
+
+    <!--External text-->
+    <div class="row">
+        <div class="col-auto">
+            <b>Text from external file: </b>
+        </div>
+        <div class="col-auto">
+            <p th:text="#{index.page.message1}"></p>
+        </div>
+    </div>
+
+
+    <!-- Fragments -->
+    <div th:replace="/fragments/index :: footer-menu2">Footer2</div>
+
+
 
 </body>
 </html>

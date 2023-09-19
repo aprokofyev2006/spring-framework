@@ -16,24 +16,24 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td th:text="${mentorList.get(0).firstName}"></td>
-            <td th:text="${mentorList.get(0).lastName}"></td>
-            <td th:text="${mentorList.get(0).age}"></td>
-            <td th:text="${mentorList.get(0).gender}"></td>
+        <tr th:each="mentor : ${mentorList}">
+            <td th:text="${mentor.firstName}"></td>
+            <td th:text="${mentor.lastName}"></td>
+            <td th:text="${mentor.age}"></td>
+            <td th:text="${mentor.gender}"></td>
         </tr>
-        <tr>
-            <td th:text="${mentorList.get(1).firstName}"></td>
-            <td th:text="${mentorList.get(1).lastName}"></td>
-            <td th:text="${mentorList.get(1).age}"></td>
-            <td th:text="${mentorList.get(1).gender}"></td>
-        </tr>
-        <tr>
-            <td th:text="${mentorList.get(2).firstName}"></td>
-            <td th:text="${mentorList.get(2).lastName}"></td>
-            <td th:text="${mentorList.get(2).age}"></td>
-            <td th:text="${mentorList.get(2).gender}"></td>
-        </tr>
+<!--        <tr>-->
+<!--            <td th:text="${mentorList.get(1).firstName}"></td>-->
+<!--            <td th:text="${mentorList.get(1).lastName}"></td>-->
+<!--            <td th:text="${mentorList.get(1).age}"></td>-->
+<!--            <td th:text="${mentorList.get(1).gender}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td th:text="${mentorList.get(2).firstName}"></td>-->
+<!--            <td th:text="${mentorList.get(2).lastName}"></td>-->
+<!--            <td th:text="${mentorList.get(2).age}"></td>-->
+<!--            <td th:text="${mentorList.get(2).gender}"></td>-->
+<!--        </tr>-->
     </tbody>
 </table>
 

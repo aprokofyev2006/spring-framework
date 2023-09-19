@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<!--    <link th:replace="/fragments/index :: boostrap-css"/>-->
+    <link th:replace="~{/fragments/index :: boostrap-css}"/>
+    <link th:replace="~{/fragments/index :: custom-css}"/>
+    <script th:replace="~{/fragments/index :: js-scripts}"></script>
+</head>
+<body>
+    <div class="container-lg">
+        <h2>Welcome new mentor</h2>
+
+        <form th:action="@{/mentor/confirm}" method="post" th:object="${mentor}">
+            <div class="row">
+
+                <div class="form-group">
+                    <label for="FirstName">First Name:</label>
+                    <input type="text" id="FirstName" th:field="*{firstName}"><br><br>
+
+                    <label for="LastName">Last Name:</label>
+                    <input type="text" id="LastName" th:field="*{lastName}"><br><br>
+
+                    <label for="Email">Email:</label>
+                    <input type="email" id="Email" th:field="*{email}"><br><br>
+
+                    <label for="Graduated">Graduated:</label>
+                    <input type="checkbox" id="Graduated" th:field="*{graduated}"><br><br>
+
+                    <label>Gender:</label>
+                    <input type="radio" id="GenderM" value="Male" th:field="*{gender}"> Male
+                    <input type="radio" id="GenderF" value="Female" th:field="*{gender}"> Female
+                    <br><br>
+
+                    <label>Batch Number:</label>
+                    <select th:field="*{batch}">
+                        <option th:each="batch : ${batchList}" th:value="${batch}" th:text="${batch}"></option>
+                    </select><br><br>
+
+                    <label>Company:</label>
+                    <textarea th:field="*{company}"></textarea><br><br>
+
+                    <button type="submit">Register</button>
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+
+
+
+  <!-- Fragments -->
+  <div th:replace="~{/fragments/index :: footer-menu2}">Footer2</div>
+
+</body>
+</html>
