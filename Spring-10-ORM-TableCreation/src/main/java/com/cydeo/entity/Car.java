@@ -1,7 +1,6 @@
 package com.cydeo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,8 +18,12 @@ public class Car {
     private String make;
     private String model;
 
-    public Car(String make, String model) {
+    @Column(nullable = true)
+    private int year;
+
+    public Car(String make, String model, int year) {
         this.make = make;
         this.model = model;
+        this.year = year;
     }
 }
