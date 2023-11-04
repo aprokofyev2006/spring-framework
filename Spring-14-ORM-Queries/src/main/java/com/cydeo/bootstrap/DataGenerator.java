@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 @Component
+@Transactional
 public class DataGenerator implements CommandLineRunner {
 
     private final RegionRepository regionRepository;
@@ -140,8 +141,8 @@ public class DataGenerator implements CommandLineRunner {
         System.out.println("----findByNameStartsWith----");
         courseRepository.findByNameStartsWith("Getting Started").forEach(System.out::println);
 
-        //System.out.println("----streamByCategory----");
-        //courseRepository.streamByCategory("Spring").forEach(System.out::println);
+        System.out.println("----streamByCategory----");
+        courseRepository.streamByCategory("Spring").forEach(System.out::println);
 
         System.out.println("----findAllByCategoryAndRatingGreaterThan----");
         courseRepository.findAllByCategoryAndRatingGreaterThan("Spring", 4).forEach(System.out::println);
