@@ -1,8 +1,8 @@
 package com.cydeo.bootstrap;
 
-import com.cydeo.enums.UserRole;
 import com.cydeo.repository.AccountRepository;
 import com.cydeo.repository.CinemaRepository;
+import com.cydeo.repository.MovieCinemaRepository;
 import com.cydeo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,12 +16,14 @@ public class DataGenerator implements CommandLineRunner {
     private final AccountRepository accountRepository;
     private final CinemaRepository cinemaRepository;
     private final UserRepository userRepository;
+    private final MovieCinemaRepository movieCinemaRepository;
 
     @Autowired
-    public DataGenerator(AccountRepository accountRepository, CinemaRepository cinemaRepository, UserRepository userRepository) {
+    public DataGenerator(AccountRepository accountRepository, CinemaRepository cinemaRepository, UserRepository userRepository, MovieCinemaRepository movieCinemaRepository) {
         this.accountRepository = accountRepository;
         this.cinemaRepository = cinemaRepository;
         this.userRepository = userRepository;
+        this.movieCinemaRepository = movieCinemaRepository;
     }
 
     @Override
@@ -88,7 +90,7 @@ public class DataGenerator implements CommandLineRunner {
 //        cinemaRepository.listCinemasWithLikePattern("et").forEach(System.out::println);
 
         System.out.println("----listCinemaSortByName----");
-        cinemaRepository.listCinemaSortByName().forEach(System.out::println);
+//        cinemaRepository.listCinemaSortByName().forEach(System.out::println);
 
         System.out.println("--------CinemaRepository END--------");
 
@@ -97,7 +99,24 @@ public class DataGenerator implements CommandLineRunner {
 //        System.out.println("----findByName----");
 //        userRepository.findByEmail("johnnie@email.com").forEach(System.out::println);
 
-        System.out.println("--------UserRepository END--------");
+        System.out.println("--------MovieCinemaRepository END--------");
+
+//        System.out.println("----getAllById----");
+//        System.out.println(movieCinemaRepository.getAllById(3L));
+
+//        System.out.println("----countMovieCinemaByCinema----");
+//        System.out.println(movieCinemaRepository.countAllByCinemaId(12L));
+
+//        System.out.println("----findTop3ByOrderByMoviePriceDesc----");
+//        movieCinemaRepository.findTop3ByOrderByMoviePriceDesc().forEach(System.out::println);
+
+//        System.out.println("----findAllByMovie_NameContaining----");
+//        movieCinemaRepository.findAllByMovie_NameContaining("en").forEach(System.out::println);
+
+        System.out.println("----findAllByCinema_Location_Name----");
+        movieCinemaRepository.findAllByCinema_Location_Name("AMC Empire 25").forEach(System.out::println);
+
+        System.out.println("--------MovieCinemaRepository END--------");
 
     }
 }
