@@ -1,9 +1,6 @@
 package com.cydeo.bootstrap;
 
-import com.cydeo.repository.AccountRepository;
-import com.cydeo.repository.CinemaRepository;
-import com.cydeo.repository.MovieCinemaRepository;
-import com.cydeo.repository.UserRepository;
+import com.cydeo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,17 +10,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class DataGenerator implements CommandLineRunner {
 
-    private final AccountRepository accountRepository;
-    private final CinemaRepository cinemaRepository;
-    private final UserRepository userRepository;
-    private final MovieCinemaRepository movieCinemaRepository;
+    private final AccountRepository accountRepository; //+
+    private final CinemaRepository cinemaRepository; //+
+    private final UserRepository userRepository; //+
+    private final MovieRepository movieRepository; //+
+    private final MovieCinemaRepository movieCinemaRepository; //+
+    private final TicketRepository ticketRepository;
+    private final GenreRepository genreRepository;
 
     @Autowired
-    public DataGenerator(AccountRepository accountRepository, CinemaRepository cinemaRepository, UserRepository userRepository, MovieCinemaRepository movieCinemaRepository) {
+    public DataGenerator(AccountRepository accountRepository, CinemaRepository cinemaRepository, UserRepository userRepository, MovieRepository movieRepository, MovieCinemaRepository movieCinemaRepository, TicketRepository ticketRepository, GenreRepository genreRepository) {
         this.accountRepository = accountRepository;
         this.cinemaRepository = cinemaRepository;
         this.userRepository = userRepository;
+        this.movieRepository = movieRepository;
         this.movieCinemaRepository = movieCinemaRepository;
+        this.ticketRepository = ticketRepository;
+        this.genreRepository = genreRepository;
     }
 
     @Override
@@ -98,8 +101,18 @@ public class DataGenerator implements CommandLineRunner {
 
 //        System.out.println("----findByName----");
 //        userRepository.findByEmail("johnnie@email.com").forEach(System.out::println);
+        userRepository.retrieveBetweenAgeRange(18,40).forEach(System.out::println);
 
-        System.out.println("--------MovieCinemaRepository END--------");
+        System.out.println("--------UserRepository END--------");
+
+        System.out.println("--------MovieRepository START--------");
+
+        System.out.println(movieRepository.getAllByName("Tenet"));
+
+        System.out.println("--------MovieRepository END--------");
+
+        System.out.println("--------MovieCinemaRepository START--------");
+
 
 //        System.out.println("----getAllById----");
 //        System.out.println(movieCinemaRepository.getAllById(3L));
@@ -117,6 +130,18 @@ public class DataGenerator implements CommandLineRunner {
         movieCinemaRepository.findAllByCinema_Location_Name("AMC Empire 25").forEach(System.out::println);
 
         System.out.println("--------MovieCinemaRepository END--------");
+
+        System.out.println("--------TicketRepository START--------");
+
+        ticketRepository.countAllByMovieCinema_Movie_Name("Tenet");
+
+        System.out.println("--------TicketRepository END--------");
+
+        System.out.println("--------GenreRepository START--------");
+
+        genreRepository.retrieveByName("Crime");
+
+        System.out.println("--------GenreRepository END--------");
 
     }
 }
