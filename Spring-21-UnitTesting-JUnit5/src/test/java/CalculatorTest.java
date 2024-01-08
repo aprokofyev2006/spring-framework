@@ -71,12 +71,14 @@ class CalculatorTest {
     }
 
     @Test
+    @Tag("calc")
     void add() {
         int actual = Calculator.add(2,3);
         Assertions.assertEquals(4,actual,"Actual value is not matching with expected");
     }
 
     @Test
+    @Tag("calc")
     void add2(){
         assertThrows(IllegalArgumentException.class, () -> Calculator.add2(3,2));
     }
