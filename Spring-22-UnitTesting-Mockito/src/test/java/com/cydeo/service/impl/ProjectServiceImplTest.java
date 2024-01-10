@@ -54,5 +54,18 @@ class ProjectServiceImplTest {
         assertEquals("Project Not Found", exception.getMessage());
     }
 
+    @Test
+    void save_test(){
+        ProjectDTO projectDTO = new ProjectDTO();
+        Project project = new Project();
+
+        when(projectMapper.convertToEntity(projectDTO)).thenReturn(project);
+        when(projectRepository.save(project)).thenReturn(project);
+
+        projectService.save(projectDTO);
+
+        verify(projectRepository).save(project);
+    }
+
 
 }
